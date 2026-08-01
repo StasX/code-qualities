@@ -8,9 +8,9 @@ def phpCodeSnifferTesting() {
         '''
     } finally {
         archiveArtifacts(
-            artifacts: 'phpcs.xml',
-            fingerprint: true,
-            allowEmptyArchive: true
+            artifacts:'phpcs.xml',
+            fingerprint:true,
+            allowEmptyArchive:true
         )
     }
 }
@@ -26,9 +26,9 @@ def phpCSFixerTesting() {
         '''
     } finally {
         archiveArtifacts(
-            artifacts: 'php-cs-fixer.txt',
-            fingerprint: true,
-            allowEmptyArchive: true
+            artifacts:'php-cs-fixer.txt',
+            fingerprint:true,
+            allowEmptyArchive:true
         )
     }
 }
@@ -43,9 +43,9 @@ def infectionTesting() {
         '''
     } finally {
         archiveArtifacts(
-            artifacts: 'infection.xml,infection-summary.txt',
-            fingerprint: true,
-            allowEmptyArchive: true
+            artifacts:'infection.xml,infection-summary.txt',
+            fingerprint:true,
+            allowEmptyArchive:true
         )
     }
 }

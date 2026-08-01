@@ -9,8 +9,8 @@ def banditScan() {
         '''
     } finally {
         archiveArtifacts(
-            artifacts: 'bandit.json',
-            fingerprint: true
+            artifacts:'bandit.json',
+            fingerprint:true
         )
     }
 }

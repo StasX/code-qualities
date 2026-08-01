@@ -3,8 +3,8 @@ def codeNarcTesting() {
         sh 'gradle codenarcMain --continue --no-daemon'
     } finally {
         archiveArtifacts(
-            artifacts: 'build/reports/codenarc/**/*.html',
-            allowEmptyArchive: true
+            artifacts:'build/reports/codenarc/**/*.html',
+            allowEmptyArchive:true
         )
     }
 }
@@ -14,8 +14,8 @@ def spotBugsTesting() {
         sh 'gradle spotbugsMain --continue --no-daemon'
     } finally {
         archiveArtifacts(
-            artifacts: 'build/reports/spotbugs/**/*.html,build/reports/spotbugs/**/*.xml',
-            allowEmptyArchive: true
+            artifacts:'build/reports/spotbugs/**/*.html,build/reports/spotbugs/**/*.xml',
+            allowEmptyArchive:true
         )
     }
 }
