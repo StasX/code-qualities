@@ -9,8 +9,8 @@ def phpCodeSnifferTesting() {
     } finally {
         archiveArtifacts(
             artifacts:'phpcs.xml',
-            fingerprint:true,
-            allowEmptyArchive:true
+            allowEmptyArchive:true,
+            fingerprint:true
         )
     }
 }
@@ -22,13 +22,17 @@ def phpCSFixerTesting() {
             --config=.php-cs-fixer.dist.php \
             --diff \
             --verbose \
-            | tee php-cs-fixer.txt
+            > php-cs-fixer.txt 2>&1
+        status=$?
+
+        cat php-cs-fixer.txt
+        exit "$status"
         '''
     } finally {
         archiveArtifacts(
             artifacts:'php-cs-fixer.txt',
-            fingerprint:true,
-            allowEmptyArchive:true
+            allowEmptyArchive:true,
+            fingerprint:true
         )
     }
 }
@@ -36,11 +40,12 @@ def phpCSFixerTesting() {
 def phpStanTesting() {
     try {
         sh '''
-        #!/usr/bin/env bash
-        set -o pipefail
+        vendor/bin/phpstan analyse \
+            > phpstan-report.txt 2>&1
+        status=$?
 
-        phpstan analyse \
-            2>&1 | tee phpstan-report.txt
+        cat phpstan-report.txt
+        exit "$status"
         '''
     } finally {
         archiveArtifacts(
