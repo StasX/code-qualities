@@ -33,19 +33,20 @@ def phpCSFixerTesting() {
     }
 }
 
-def infectionTesting() {
+def phpStanTesting() {
     try {
         sh '''
-        vendor/bin/infection \
-            --threads=auto \
-            --log-xml=infection.xml \
-            --logger-summary=infection-summary.txt
+        #!/usr/bin/env bash
+        set -o pipefail
+
+        phpstan analyse \
+            2>&1 | tee phpstan-report.txt
         '''
     } finally {
         archiveArtifacts(
-            artifacts:'infection.xml,infection-summary.txt',
-            fingerprint:true,
-            allowEmptyArchive:true
+            artifacts:'phpstan-report.txt',
+            allowEmptyArchive:true,
+            fingerprint:true
         )
     }
 }
