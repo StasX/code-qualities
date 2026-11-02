@@ -18,12 +18,12 @@ def phpCodeSnifferTesting() {
 def phpCSFixerTesting() {
     try {
         sh '''
+        status=0
         vendor/bin/php-cs-fixer check \
             --config=.php-cs-fixer.dist.php \
             --diff \
             --verbose \
-            > php-cs-fixer.txt 2>&1
-        status=$?
+            > php-cs-fixer.txt 2>&1 || status=$?
 
         cat php-cs-fixer.txt
         exit "$status"
@@ -40,9 +40,9 @@ def phpCSFixerTesting() {
 def phpStanTesting() {
     try {
         sh '''
+        status=0
         vendor/bin/phpstan analyse \
-            > phpstan-report.txt 2>&1
-        status=$?
+            > phpstan-report.txt 2>&1 || status=$?
 
         cat phpstan-report.txt
         exit "$status"
