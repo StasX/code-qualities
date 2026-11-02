@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <FindBugsFilter>
+    <!-- Jenkins vars scripts use camelCase names, inherited by generated classes. -->
+    <Match>
+        <Or>
+            <Class name="groovyCodeQuality"/>
+            <Class name="phpCodeQuality"/>
+            <Class name="pythonCodeQuality"/>
+        </Or>
+        <Bug pattern="NM_CLASS_NAMING_CONVENTION"/>
+    </Match>
     <Match>
         <Field name="__$stMC"/>
         <Bug pattern="MS_SHOULD_BE_FINAL"/>
